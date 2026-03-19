@@ -14,7 +14,7 @@ public class Sec extends TrigonometricFunction {
     }
 
     public Sec(double epsilon, int maxIterations){
-        super();
+        super(epsilon, maxIterations);
         this.cos = new Cos(epsilon, maxIterations);
     }
 
