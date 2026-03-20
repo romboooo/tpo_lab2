@@ -17,6 +17,10 @@ public class Sec extends TrigonometricFunction {
         super(epsilon, maxIterations);
         this.cos = new Cos(epsilon, maxIterations);
     }
+    public Sec(Cos cos, double epsilon, int maxIterations){
+        super(epsilon, maxIterations);
+        this.cos =cos;
+    }
 
     @Override
     public double solve(double x) {

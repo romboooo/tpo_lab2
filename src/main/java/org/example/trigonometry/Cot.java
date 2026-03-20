@@ -18,6 +18,11 @@ public class Cot extends TrigonometricFunction {
         this.cos = new Cos(epsilon, maxIterations);
     }
 
+    public Cot(Sin sin,Cos cos, double epsilon, int maxIterations) {
+        super(epsilon, maxIterations);
+        this.sin = sin;
+        this.cos = cos;
+    }
     @Override
     public double solve(double x) {
         if(!isDefined(x)){

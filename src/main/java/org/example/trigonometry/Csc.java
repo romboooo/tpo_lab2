@@ -16,6 +16,10 @@ public class Csc extends TrigonometricFunction {
         super(epsilon, maxIterations);
         this.sin = new Sin(epsilon, maxIterations);
     }
+    public Csc(Sin sin, double epsilon, int maxIterations){
+        super(epsilon, maxIterations);
+        this.sin = sin;
+    }
 
     @Override
     public double solve(double x) {

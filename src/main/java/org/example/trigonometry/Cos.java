@@ -16,6 +16,11 @@ public class Cos extends TrigonometricFunction {
         this.sin = new Sin(epsilon,maxIterations);
     }
 
+    public Cos(Sin sin, double epsilon, int maxIterations){
+        super(epsilon, maxIterations);
+        this.sin=sin;
+    }
+
     @Override
     public double solve(double x) {
 

@@ -28,6 +28,15 @@ public class Log extends LogarithmicFunction {
         this.ln = new Ln(epsilon, maxIterations);
         this.lnBase = ln.solve(base);
     }
+    public Log(Ln ln, double base, double epsilon, int maxIterations) {
+        super(epsilon, maxIterations);
+        if (base <= 0 || base == 1) {
+            throw new IllegalArgumentException("Base must be > 0 and ≠ 1");
+        }
+        this.base = base;
+        this.ln = ln;
+        this.lnBase = ln.solve(base);
+    }
 
     @Override
     public double solve(double x) {
