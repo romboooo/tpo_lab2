@@ -13,7 +13,7 @@ public class Cot extends TrigonometricFunction {
     }
 
     public Cot(double epsilon, int maxIterations){
-        super();
+        super(epsilon, maxIterations);
         this.sin = new Sin(epsilon, maxIterations);
         this.cos = new Cos(epsilon, maxIterations);
     }

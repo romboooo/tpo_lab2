@@ -13,7 +13,7 @@ public class Csc extends TrigonometricFunction {
     }
 
     public Csc(double epsilon, int maxIterations){
-        super();
+        super(epsilon, maxIterations);
         this.sin = new Sin(epsilon, maxIterations);
     }
 
