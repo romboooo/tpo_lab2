@@ -15,6 +15,18 @@ public class FunctionSystem {
     private final Log log5;
     private final Log log10;
 
+    public FunctionSystem(Sin sin, Sec sec, Cot cot, Csc csc, Ln ln,
+                          Log log2, Log log5, Log log10) {
+        this.sin = sin;
+        this.sec = sec;
+        this.cot = cot;
+        this.csc = csc;
+        this.ln = ln;
+        this.log2 = log2;
+        this.log5 = log5;
+        this.log10 = log10;
+    }
+
     public FunctionSystem(double epsilon, int maxIterations) {
         this.sin = new Sin(epsilon, maxIterations);
         this.sec = new Sec(epsilon, maxIterations);
