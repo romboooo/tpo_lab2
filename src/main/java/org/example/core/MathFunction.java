@@ -1,7 +1,9 @@
 package org.example.core;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Locale;
 
 public abstract class MathFunction {
     protected static final double DEFAULT_EPSILON = 1e-6;
@@ -23,11 +25,6 @@ public abstract class MathFunction {
     public abstract String getName();
     public abstract String getDomainDescription();
 
-    public String formatForCsv(double x) {
-        double result = solve(x);
-        return String.format("%.6f,%s", x,
-                Double.isNaN(result) ? "NaN" : String.format("%.10f", result));
-    }
 
     public void exportToCsv(Writer writer, double start, double end, double step)
             throws IOException {
@@ -52,7 +49,16 @@ public abstract class MathFunction {
         return value;
     }
 
-    protected boolean isNearZero(double value) {
-        return Math.abs(value) < epsilon;
+    public String formatForCsv(double x) {
+        double result = solve(x);
+        return String.format(Locale.US, "%.6f,%s", x,
+                Double.isNaN(result) ? "NaN" : String.format(Locale.US, "%.10f", result));
+    }
+
+    public void exportToCsv(String path, double start, double end, double step)
+            throws IOException {
+        try (FileWriter writer = new FileWriter(path)) {
+            exportToCsv(writer, start, end, step);
+        }
     }
 }
