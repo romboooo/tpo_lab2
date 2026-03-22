@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -161,5 +162,20 @@ class SecTest {
         assertTrue(csv.contains("x,sec"));
         assertTrue(csv.length() > 20);
         assertTrue(csv.contains("NaN"), "sec(x) должен содержать NaN в точке разрыва");
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {
+            Double.POSITIVE_INFINITY,
+            Double.NEGATIVE_INFINITY,
+            Double.NaN
+    })
+    @DisplayName("проверка обработки специальных значений")
+    void testSin_SpecialValues(double x) {
+        Sec sec = new Sec(EPSILON, MAX_ITERATIONS);
+
+        assertTrue(Double.isNaN(sec.solve(x)),
+                String.format("должен возвращать NaN для %.4f", x));
+        assertFalse(sec.isDefined(x));
     }
 }

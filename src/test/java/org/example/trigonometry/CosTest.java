@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -127,5 +128,21 @@ class CosTest {
         assertTrue(csv.contains("x,cos"));
         assertTrue(csv.length() > 20);
         assertFalse(csv.contains("NaN"), "cos(x) для [0,π] не должен возвращать NaN");
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(doubles = {
+            Double.POSITIVE_INFINITY,
+            Double.NEGATIVE_INFINITY,
+            Double.NaN
+    })
+    @DisplayName("проверка обработки специальных значений")
+    void testSin_SpecialValues(double x) {
+        Cos cos = new Cos(EPSILON, MAX_ITERATIONS);
+
+        assertTrue(Double.isNaN(cos.solve(x)),
+                String.format("должен возвращать NaN для %.4f", x));
+        assertFalse(cos.isDefined(x));
     }
 }

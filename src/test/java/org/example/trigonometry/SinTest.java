@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -91,6 +92,21 @@ public class SinTest {
 
         assertEquals("sin", sin.getName());
         assertEquals("x ∈ ℝ (все действительные числа)", sin.getDomainDescription());
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {
+            Double.POSITIVE_INFINITY,
+            Double.NEGATIVE_INFINITY,
+            Double.NaN
+    })
+    @DisplayName("проверка обработки специальных значений")
+    void testSin_SpecialValues(double x) {
+        Sin sin = new Sin(EPSILON, MAX_ITERATIONS);
+
+        assertTrue(Double.isNaN(sin.solve(x)),
+                String.format("должен возвращать NaN для %.4f", x));
+        assertFalse(sin.isDefined(x));
     }
 
 }
