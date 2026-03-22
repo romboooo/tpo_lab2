@@ -163,8 +163,6 @@ class CscTest {
         String csv = writer.toString();
         writer.close();
 
-        System.out.println("\n=== Csc CSV OUTPUT ===\n" + csv + "\n=== END ===\n");
-
         assertTrue(csv.contains("x,csc"));
         assertTrue(csv.length() > 20);
     }

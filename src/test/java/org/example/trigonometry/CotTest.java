@@ -166,8 +166,6 @@ class CotTest {
         String csv = writer.toString();
         writer.close();
 
-        System.out.println("\n=== Cot CSV OUTPUT ===\n" + csv + "\n=== END ===\n");
-
         assertTrue(csv.contains("x,cot"));
         assertTrue(csv.length() > 20);
     }
