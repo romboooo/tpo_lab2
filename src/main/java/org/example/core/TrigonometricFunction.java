@@ -9,10 +9,12 @@ public abstract class TrigonometricFunction extends MathFunction {
         super(epsilon, maxIterations);
     }
 
+    // безопасное определ ение точки разрыва
     protected boolean isDiscontinuityPoint(double x, double period, double discontinuityOffset) {
         if (Double.isInfinite(x) || Double.isNaN(x)) {
             return true;
         }
+
         double normalized = ((x % period) + period) % period;
         return Math.abs(normalized - discontinuityOffset) < epsilon ||
                 Math.abs(normalized - (discontinuityOffset + period)) < epsilon;
