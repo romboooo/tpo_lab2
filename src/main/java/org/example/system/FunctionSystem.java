@@ -1,11 +1,12 @@
 package org.example.system;
 
+import org.example.core.MathFunction;
 import org.example.logarithms.*;
 import org.example.trigonometry.*;
 
 import static java.lang.Math.*;
 
-public class FunctionSystem {
+public class FunctionSystem extends MathFunction {
     private final Csc csc;
     private final Sin sin;
     private final Sec sec;
@@ -41,6 +42,21 @@ public class FunctionSystem {
 
     public double solve(double x) {
         return (x <= 0) ? solveFirstBranch(x) : solveSecondBranch(x);
+    }
+
+    @Override
+    public boolean isDefined(double x) {
+        return true;
+    }
+
+    @Override
+    public String getName() {
+        return "funcSystem";
+    }
+
+    @Override
+    public String getDomainDescription() {
+        return "funcSystem";
     }
 
     public double solveFirstBranch(double x) {

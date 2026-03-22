@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.logarithms.Ln;
 import org.example.logarithms.Log;
+import org.example.system.FunctionSystem;
 import org.example.trigonometry.*;
 import java.io.IOException;
 
@@ -18,6 +19,8 @@ public class Main {
         Ln ln = new Ln();
         Log log2 = new Log(2,EPSILON, MAX_ITERATIONS);
         Log log5 = new Log(5,EPSILON, MAX_ITERATIONS);
+        Log log10 = new Log(10,EPSILON, MAX_ITERATIONS);
+        FunctionSystem fs = new FunctionSystem(sin,sec,cot,csc,ln,log2,log5,log10);
         try {
             csc.exportToCsv("build/reports/csc.csv", -2 * Math.PI, 2 * Math.PI, Math.PI/4);
             sin.exportToCsv("build/reports/sin.csv", -2 * Math.PI, 2 * Math.PI, Math.PI/4);
@@ -27,6 +30,9 @@ public class Main {
             ln.exportToCsv("build/reports/ln.csv", 0, 2.71 * 5, 2.71);
             log2.exportToCsv("build/reports/log2.csv", -1, 5, 1);
             log5.exportToCsv("build/reports/log5.csv", -1, 5, 1);
+            fs.exportToCsv("build/reports/funcLogs.csv", 0, 10,1);
+            fs.exportToCsv("build/reports/funcPI.csv", -Math.PI*5, 0,Math.PI/12);
+
         } catch (IOException e){
             System.out.println(e.getMessage());
         }
